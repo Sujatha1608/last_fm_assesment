@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface GeneralService {
 
-    @GET("1/")
-    fun getData(): Single<SampleDataResponse>
+    @GET("posts")
+    fun getData(): Single<List<SampleDataResponse>>
 }

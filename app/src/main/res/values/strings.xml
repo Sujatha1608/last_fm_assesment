@@ -36,6 +36,7 @@
     <string name="menu_promotion">Promotion</string>
 	<string name="get_data">Get Data</string>
 	<string name="title">Title</string>
+	<string name="info">Title and Body</string>
 	<string name="user_Id">User Id</string>
 
     <string name="loading">Loading…</string>

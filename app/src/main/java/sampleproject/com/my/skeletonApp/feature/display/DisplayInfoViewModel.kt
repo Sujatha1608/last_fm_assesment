@@ -1,51 +1,56 @@
 package sampleproject.com.my.skeletonApp.feature.display
 
-import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableInt
+import androidx.lifecycle.MutableLiveData
 import sampleproject.com.my.skeletonApp.AppPreference
-import sampleproject.com.my.skeletonApp.database.DatabaseRepository
-import sampleproject.com.my.skeletonApp.database.User
-import sampleproject.com.my.skeletonApp.utilities.ObservableString
-import sampleproject.com.my.skeletonApp.utilities.observe
 import androidx.lifecycle.ViewModel
 import com.github.ajalt.timberkt.Timber
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.CompletableObserver
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.schedulers.Schedulers
-import java.util.function.BiFunction
+import io.reactivex.rxjava3.kotlin.subscribeBy
+import sampleproject.com.my.skeletonApp.core.event.SingleLiveEvent
+import sampleproject.com.my.skeletonApp.rest.DatasetUseCase
 import javax.inject.Inject
 
 
-class DisplayInfoViewModel @Inject constructor(private val databaseRepository: DatabaseRepository, private val appPreference: AppPreference): ViewModel() {
+class DisplayInfoViewModel @Inject constructor( private val dataSettUseCase: DatasetUseCase, private val appPreference: AppPreference): ViewModel() {
 
-    var username = ObservableString("")
+
+
+    lateinit var callBack: ViewModelCallBack
+    val errorEvent = MutableLiveData<String>()
+    val loadingDialogEvent = SingleLiveEvent<Boolean>()
+
+    var dataResultInfo: MutableList<DataResultResponse> = mutableListOf()
+    val list = mutableListOf<DataResultResponse>()
 
     init {
-        username.observe().subscribe { setUserName(username.get().toString())}
+        setUserName()
     }
+    interface ViewModelCallBack {
+        fun updateRecyclerView(update: Boolean)
 
-    private fun setUserName(username: String) {
-        val user = User(username)
-        Completable.fromAction{
-            databaseRepository.insertUser(user)
-        }.observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe(object: CompletableObserver {
-                override fun onComplete() {
-                    Timber.d{"Success insert $username"}
+    }
+    private fun setUserName() {
+        loadingDialogEvent.postValue(true)
+        dataSettUseCase.execute()
+            .subscribeBy(
+                onSuccess = {
+                    Timber.d { "api $it" }
+                    loadingDialogEvent.postValue(false)
+                    for(i in it){
+                        val model = DataResultResponse(i.title,i.body)
+                        list.add(model)
+                        if (dataResultInfo.isNotEmpty()) {
+                            dataResultInfo.clear()
+                        }
+                        dataResultInfo.addAll(list)
+                        callBack.updateRecyclerView(true)
+                    }
+
+                },
+                onError = { e ->
+                    errorEvent.postValue(e.message.toString())
+                    loadingDialogEvent.postValue(false)
+
                 }
-
-                override fun onSubscribe(d: Disposable) {
-                    if(d.isDisposed) Timber.e{"DB Observable disposed"}
-                }
-
-                override fun onError(e: Throwable) {
-                    Timber.e{e.message.toString()}
-                }
-
-            })
+            )
     }
 }

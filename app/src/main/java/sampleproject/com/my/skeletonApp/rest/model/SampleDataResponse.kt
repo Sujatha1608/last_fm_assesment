@@ -9,8 +9,8 @@ data class SampleDataResponse (
     @Json( name = "id")
     val id: Int?=null,
 
-    @Json( name = "completed")
-    val completed: Boolean,
+    @Json( name = "body")
+    val body: String,
 
     @Json( name = "title")
     val title: String?=null

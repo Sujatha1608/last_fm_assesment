@@ -58,59 +58,18 @@ class AppExceptionHandler(private val systemHandler: Thread.UncaughtExceptionHan
 //        e.printStackTrace()
 
         lastStartedActivity?.let { activity ->
-            //            Crashlytics.log(e.printStackTrace().toString())
-//            Crashlytics.getInstance().core.log(e.message)
-//            Crashlytics.getInstance().core.logException(e)
-
-//            killThisProcess {
-//                val intent = Intent(activity, CrashActivity::class.java).apply {
-//                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-//                }
                 with(activity) {
                     finish()
                     startActivity(intent)
-//                }
             }
 
 
-            /*val isRestarted = activity.intent
-                    .getBooleanExtra(RESTARTED, false)
 
-            val lastException = activity.intent
-                    .getSerializableExtra(LAST_EXCEPTION) as Throwable?
-
-            if (!isRestarted || !isSameException(e, lastException)) {
-                // signal exception to be logged by crashlytics
-                crashlyticsHandler.uncaughtException(t, e)
-
-                // restart the application
-                killThisProcess {
-                    val intent = activity.intent
-                            .putExtra(RESTARTED, true)
-                            .putExtra(LAST_EXCEPTION, e)
-                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or
-                                    Intent.FLAG_ACTIVITY_CLEAR_TASK)
-
-                    with(activity) {
-                        finish()
-                        startActivity(intent)
-                    }
-                }
-            } else {
-                //The default system exception handler will handle the caught exception.
-                killThisProcess {
-                    systemHandler.uncaughtException(t, e)
-                }
-            }*/
         } ?: killThisProcess {
             crashlyticsHandler.uncaughtException(t, e)
             systemHandler.uncaughtException(t, e)
         }
     }
-
-    /**
-     * Not bullet-proof, but it works well.
-     */
     private fun isSameException(originalException: Throwable,
                                 lastException: Throwable?): Boolean {
         if (lastException == null) return false
