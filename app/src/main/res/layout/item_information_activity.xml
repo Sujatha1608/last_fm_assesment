@@ -23,27 +23,28 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
-            android:orientation="vertical"
+            android:weightSum="4"
+            android:orientation="horizontal"
             android:gravity="start">
             <TextView
                 android:id="@+id/title"
                 style="@style/BaseTextView.OpenSansItalic"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_medium_16dp"
-                android:text="@{model.title}"
-                android:textSize="@dimen/small_text_12sp"
+                android:layout_gravity="center"
+                android:gravity="center|start"
+                android:layout_weight="3.5"
+                android:padding="@dimen/space_tiny_5dp"
+                android:text="@{model.display_name}"
+                android:textSize="@dimen/large_text_20sp"
                 tools:text="@string/title"/>
-            <TextView
-                android:id="@+id/tv_body"
-                style="@style/BaseTextView.OpenSansBold"
-                android:layout_width="match_parent"
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_tiny_4dp"
-                android:text="@{model.body}"
-                android:textColor="@color/colorBlue"
-                android:textSize="@dimen/small_text_12sp"
-                tools:text="@string/title" />
+                android:layout_gravity="center"
+                android:layout_weight="0.5"
+                android:gravity="center|end"
+                android:src="@drawable/icon_right_option"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

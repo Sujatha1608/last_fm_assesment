@@ -44,7 +44,8 @@ class DataResultAdapter(statusList: List<DataResultResponse>, private val callba
 
     }
     override fun getItemCount(): Int {
-        return items.size
+        val limit = 20
+        return Math.min(items.size,limit)
     }
 
     inner class ViewHolder(val binding: ItemInformationActivityBinding,viewType: Int) : RecyclerView.ViewHolder(binding.root) {

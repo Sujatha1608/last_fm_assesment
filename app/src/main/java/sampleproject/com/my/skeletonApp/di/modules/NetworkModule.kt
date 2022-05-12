@@ -34,7 +34,7 @@ class NetworkModule {
     companion object {
         // API Repository
 //        private const val URL = "https://api.github.com/"
-        private const val URL = "https://jsonplaceholder.typicode.com/"
+        private const val URL = "https://api.stackexchange.com/2.3/"
 
     }
 

@@ -13,12 +13,12 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
         <activity
-                android:name="sampleproject.com.my.skeletonApp.feature.display.DisplayInfoActivity"
+                android:name="sampleproject.com.my.skeletonApp.feature.login.GetDataActivity"
                 android:screenOrientation="fullSensor"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name="sampleproject.com.my.skeletonApp.feature.login.GetDataActivity"
+                android:name="sampleproject.com.my.skeletonApp.feature.display.DisplayInfoActivity"
                 android:screenOrientation="fullSensor"
                 android:exported="true"
                 android:theme="@style/AppTheme.NoActionBar">

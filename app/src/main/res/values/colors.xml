@@ -69,4 +69,6 @@
 
     <!-- pager indicator color -->
     <color name="inactive_indicator">#3a86ac</color>
+
+    <color name="toolbar_clr">#FF005C99</color>
 </resources>

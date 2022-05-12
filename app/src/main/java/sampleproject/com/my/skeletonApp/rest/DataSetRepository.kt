@@ -7,6 +7,6 @@ import javax.inject.Singleton
 
 @Singleton
 class DataSetRepository @Inject constructor(private val apiServices: GeneralService){
-    fun getData(): Single<List<SampleDataResponse>>
-    = apiServices.getData()
+    fun getData(inName:String): Single<SampleDataResponse>
+    = apiServices.getData(inName)
 }

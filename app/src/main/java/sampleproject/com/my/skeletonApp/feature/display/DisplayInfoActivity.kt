@@ -11,6 +11,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_display.*
+import sampleproject.com.my.skeletonApp.utilities.ObservableString
+import sampleproject.com.my.skeletonApp.utilities.ToolbarWithBackModel
 import javax.inject.Inject
 
 class DisplayInfoActivity : BaseActivity(), DataResultAdapter.Callbacks {
@@ -29,8 +31,11 @@ class DisplayInfoActivity : BaseActivity(), DataResultAdapter.Callbacks {
 
         val binding: ActivityDisplayBinding = DataBindingUtil.setContentView(this, R.layout.activity_display)
         binding.viewModel = viewModel
-        setRecyclerView()
+        binding.toolbarModel = ToolbarWithBackModel(title = getString(R.string.userdata),
+            color = R.color.colorPrimary, callback = this::onBackPressed)
+
         setupEvent()
+        setRecyclerView()
     }
 
     private fun setupEvent() {
@@ -38,9 +43,9 @@ class DisplayInfoActivity : BaseActivity(), DataResultAdapter.Callbacks {
             override fun updateRecyclerView(update: Boolean) {
                 mAdapter.notifyDataSetChanged()
 
+
             }
         }
-
         viewModel.errorEvent.observe(this,
             {
                 if (it.isNotEmpty()){
@@ -58,7 +63,7 @@ class DisplayInfoActivity : BaseActivity(), DataResultAdapter.Callbacks {
         )
     }
     private fun setRecyclerView() {
-        mAdapter = DataResultAdapter(viewModel.dataResultInfo, this)
+        mAdapter = DataResultAdapter(viewModel.dataResultInfo.value!!, this)
         data_list.adapter = mAdapter
         data_list.layoutManager = LinearLayoutManager(
             this,

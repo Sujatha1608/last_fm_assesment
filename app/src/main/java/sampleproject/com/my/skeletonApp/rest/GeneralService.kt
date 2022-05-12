@@ -3,9 +3,11 @@ package sampleproject.com.my.skeletonApp.rest
 import sampleproject.com.my.skeletonApp.rest.model.SampleDataResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface GeneralService {
 
-    @GET("posts")
-    fun getData(): Single<List<SampleDataResponse>>
+    @GET("users?order=asc&sort=reputation&site=stackoverflow")
+    fun getData(@Query("inName") inName: String): Single<SampleDataResponse>
 }

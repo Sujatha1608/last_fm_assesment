@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_display.*
 import sampleproject.com.my.skeletonApp.databinding.ActivityGetDataBinding
+import sampleproject.com.my.skeletonApp.utilities.ToolbarWithBackModel
 import javax.inject.Inject
 
 class GetDataActivity : BaseActivity() {
@@ -29,7 +30,8 @@ class GetDataActivity : BaseActivity() {
         val binding: ActivityGetDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_get_data)
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
-
+        binding.toolbarModel = ToolbarWithBackModel(title = getString(R.string.userdata),
+            color = R.color.colorPrimary, callback = this::onBackPressed)
         setupEvents()
     }
 

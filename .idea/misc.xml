@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Owner/AndroidStudioProjects/sampleproject/app/src/main/res/drawable/ic_back_white.xml" value="0.18385416666666668" />
+        <entry key="..\:/Users/Owner/AndroidStudioProjects/sampleproject/app/src/main/res/drawable/icon_right_option.xml" value="0.1" />
         <entry key="..\:/Users/Owner/AndroidStudioProjects/sampleproject/app/src/main/res/drawable/select_button.xml" value="0.1" />
         <entry key="..\:/Users/Owner/AndroidStudioProjects/sampleproject/app/src/main/res/layout/activity_display.xml" value="0.16770833333333332" />
         <entry key="..\:/Users/Owner/AndroidStudioProjects/sampleproject/app/src/main/res/layout/activity_get_data.xml" value="0.16770833333333332" />
         <entry key="..\:/Users/Owner/AndroidStudioProjects/sampleproject/app/src/main/res/layout/item_information_activity.xml" value="0.16770833333333332" />
+        <entry key="..\:/Users/Owner/AndroidStudioProjects/sampleproject/app/src/main/res/layout/toolbar_with_back.xml" value="0.16770833333333332" />
         <entry key="..\:/Users/Owner/AndroidStudioProjects/skeletonJitpackAndroid/app/src/main/res/drawable/btn_confirm_disabled.xml" value="0.17685185185185184" />
         <entry key="..\:/Users/Owner/AndroidStudioProjects/skeletonJitpackAndroid/app/src/main/res/drawable/confirm_button.xml" value="0.1" />
         <entry key="..\:/Users/Owner/AndroidStudioProjects/skeletonJitpackAndroid/app/src/main/res/drawable/loading_background.xml" value="0.17685185185185184" />
