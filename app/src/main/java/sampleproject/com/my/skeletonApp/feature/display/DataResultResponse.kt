@@ -1,29 +1,33 @@
 package sampleproject.com.my.skeletonApp.feature.display
 
-import com.squareup.moshi.Json
 
+import android.graphics.Bitmap
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class DataResultResponse(
 
-    @Json(name = "avatar ")
-    var Avatar : String? = null,
 
-    @Json(name = "display_name")
-    var display_name: String? = null,
+    var avatar : String?=null,
 
-    @Json(name = "reputation ")
-    var Reputation : Int? = null,
+    var display_name: String? = "",
 
-    @Json(name = "top_tags")
-    var top_tags: String? = null,
-
-    @Json(name = "badges ")
-    var Badges : String? = null,
-
-    @Json(name = "location ")
-    var Location : String? = null,
-
-    @Json(name = "creation_date ")
-    var Creation_Date : Int? = null
+    var reputation : Int? = 0,
 
 
-)
+    var top_tags: String? = "",
+
+
+    var badges : String? = "",
+
+
+    var location : String? = "",
+
+
+    var user_id : Int? = 0,
+
+    var creation_date : Int? = 0
+
+
+): Parcelable

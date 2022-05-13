@@ -38,6 +38,7 @@
                    android:id="@+id/tv_header"
                    android:fontFamily="@font/open_sans_semibold"
                    android:gravity="center"
+                   android:layout_marginTop="@dimen/space_medium_16dp"
                    android:textColor="@color/colorBlue"
                    android:textSize="@dimen/large_text_24sp"
                    style="@style/BaseTextView.OpenSansBold"
@@ -50,8 +51,7 @@
                    android:scaleType="fitCenter"
                    android:layout_gravity="center"
                    android:layout_margin="@dimen/large_text_24sp"
-                   tools:src="@drawable/select_button"/>
-
+                   tools:src="@drawable/confirm_button"/>
                <TextView
                    android:id="@+id/txt_user"
                    android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
                    android:gravity="center"
                    android:layout_gravity="center"
                    android:textColor="@color/colorBlue"
-                  />
+                   />
                <TextView
                    android:id="@+id/txt_name_value"
                    style="@style/BaseTextView.OpenSansBold"
@@ -69,7 +69,7 @@
                    android:layout_height="wrap_content"
                    android:layout_marginTop="8dp"
                    android:layout_gravity="center"
-                   android:text="@{viewmodel.userModel.display_name}"
+                   android:text="@{viewmodel.model.display_name}"
                    tools:text="@string/user_name"
                    />
                <View
@@ -78,8 +78,9 @@
                    android:layout_marginTop="11dp"
                    android:background="@color/colorGreyPrimary"
                    />
+
                <TextView
-                   android:id="@+id/reputation_text"
+                   android:id="@+id/txt_reputation"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginTop="12dp"
@@ -95,8 +96,7 @@
                    android:layout_height="wrap_content"
                    android:layout_marginTop="8dp"
                    android:layout_gravity="center"
-                   android:text="@{viewmodel.userModel.reputation}"
-                   tools:text="@string/reputation"
+                   android:text="@{Integer.toString(viewmodel.model.reputation)}"
                    />
                <View
                    android:layout_width="match_parent"
@@ -104,9 +104,8 @@
                    android:layout_marginTop="11dp"
                    android:background="@color/colorGreyPrimary"
                    />
-
                <TextView
-                   android:id="@+id/top_tags_text"
+                   android:id="@+id/txt_top_tags"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginTop="12dp"
@@ -122,8 +121,7 @@
                    android:layout_height="wrap_content"
                    android:layout_marginTop="8dp"
                    android:layout_gravity="center"
-                   android:text="@{viewmodel.userModel.top_tags}"
-                   tools:text="@string/top_tags"
+                   android:text="top"
                    />
                <View
                    android:layout_width="match_parent"
@@ -132,7 +130,7 @@
                    android:background="@color/colorGreyPrimary"
                    />
                <TextView
-                   android:id="@+id/badges_text"
+                   android:id="@+id/txt_badges"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginTop="12dp"
@@ -148,8 +146,7 @@
                    android:layout_height="wrap_content"
                    android:layout_marginTop="8dp"
                    android:layout_gravity="center"
-                   android:text="@{viewmodel.userModel.badges}"
-                   tools:text="@string/badges"
+                   android:text="badges"
                    />
                <View
                    android:layout_width="match_parent"
@@ -157,8 +154,9 @@
                    android:layout_marginTop="11dp"
                    android:background="@color/colorGreyPrimary"
                    />
+
                <TextView
-                   android:id="@+id/location_text"
+                   android:id="@+id/txt_location"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginTop="12dp"
@@ -174,8 +172,7 @@
                    android:layout_height="wrap_content"
                    android:layout_marginTop="8dp"
                    android:layout_gravity="center"
-                   android:text="@{viewmodel.userModel.location}"
-                   tools:text="@string/location"
+                   android:text="location"
                    />
                <View
                    android:layout_width="match_parent"
@@ -183,9 +180,8 @@
                    android:layout_marginTop="11dp"
                    android:background="@color/colorGreyPrimary"
                    />
-
                <TextView
-                   android:id="@+id/creation_date_text"
+                   android:id="@+id/txt_creation_date"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginTop="12dp"
@@ -195,14 +191,13 @@
                    android:textColor="@color/colorBlue"
                    />
                <TextView
-                   android:id="@+id/creation_date_value"
+                   android:id="@+id/txt_creation_date_value"
                    style="@style/BaseTextView.OpenSansBold"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginTop="8dp"
                    android:layout_gravity="center"
-                   android:text="@{viewmodel.userModel.creation_Date}"
-                   tools:text="@string/creation_date"
+                   android:text="@{Integer.toString(viewmodel.model.creation_date)}"
                    />
                <View
                    android:layout_width="match_parent"

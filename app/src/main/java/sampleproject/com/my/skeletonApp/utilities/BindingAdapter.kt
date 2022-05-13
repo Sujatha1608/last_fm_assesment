@@ -87,7 +87,7 @@ fun setImageUrl(imageView: ImageView, resource: Int) {
     }
 }
 
-@BindingAdapter("bind:imageBitmap")
+@BindingAdapter("android:imageBitmap")
 fun setBitmap(view: ImageView, bitmap: Bitmap) {
     view.setImageBitmap(bitmap)
 }

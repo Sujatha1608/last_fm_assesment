@@ -11,6 +11,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_display.*
+import sampleproject.com.my.skeletonApp.core.Router
+import sampleproject.com.my.skeletonApp.core.event.StartActivityEvent
+import sampleproject.com.my.skeletonApp.core.event.StartActivityModel
 import sampleproject.com.my.skeletonApp.utilities.ObservableString
 import sampleproject.com.my.skeletonApp.utilities.ToolbarWithBackModel
 import javax.inject.Inject
@@ -39,13 +42,6 @@ class DisplayInfoActivity : BaseActivity(), DataResultAdapter.Callbacks {
     }
 
     private fun setupEvent() {
-        viewModel.callBack = object : DisplayInfoViewModel.ViewModelCallBack {
-            override fun updateRecyclerView(update: Boolean) {
-                mAdapter.notifyDataSetChanged()
-
-
-            }
-        }
         viewModel.errorEvent.observe(this,
             {
                 if (it.isNotEmpty()){
@@ -54,6 +50,7 @@ class DisplayInfoActivity : BaseActivity(), DataResultAdapter.Callbacks {
             }
         )
 
+
         viewModel.loadingDialogEvent.observe(
             this, {
                 if(isLoadingDialogShown() || !it){
@@ -61,6 +58,18 @@ class DisplayInfoActivity : BaseActivity(), DataResultAdapter.Callbacks {
                 }else showLoadingDialog()
             }
         )
+            viewModel.startActivityEvent.observe(this, object: StartActivityEvent.StartActivityObserver{
+                override fun onStartActivity(data: StartActivityModel) {
+                    startActivity(this@DisplayInfoActivity, Router.getClass(data.to), data.parameters, data.hasResults)
+                }
+                override fun onStartActivityForResult(data: StartActivityModel) {
+                    startActivity(this@DisplayInfoActivity, Router.getClass(data.to), data.parameters, data.hasResults)
+                }
+
+            })
+        viewModel.updateRecyclerViewAdapter.observe(this,{
+            mAdapter.notifyDataSetChanged()
+        })
     }
     private fun setRecyclerView() {
         mAdapter = DataResultAdapter(viewModel.dataResultInfo.value!!, this)
@@ -72,7 +81,9 @@ class DisplayInfoActivity : BaseActivity(), DataResultAdapter.Callbacks {
         )
 
     }
-    override fun onItemClick(view: View, item: DataResultResponse) {
 
+    override fun onItemClick(view: View, item: List<DataResultResponse>) {
+        viewModel.startActivityEvent.value = StartActivityModel(Router.Destination.LOGIN, hashMapOf(Pair(Router.Parameter.USER_ID,viewModel.model)),clearHistory = true)
     }
+
 }
