@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.activity_display.*
 import sampleproject.com.my.skeletonApp.core.Router
 import sampleproject.com.my.skeletonApp.core.event.StartActivityEvent
 import sampleproject.com.my.skeletonApp.core.event.StartActivityModel
-import sampleproject.com.my.skeletonApp.utilities.ObservableString
 import sampleproject.com.my.skeletonApp.utilities.ToolbarWithBackModel
 import javax.inject.Inject
 
@@ -38,7 +37,7 @@ class DisplayInfoActivity : BaseActivity(), DataResultAdapter.Callbacks {
             color = R.color.colorPrimary, callback = this::onBackPressed)
 
         setupEvent()
-        setRecyclerView()
+
     }
 
     private fun setupEvent() {
@@ -67,12 +66,13 @@ class DisplayInfoActivity : BaseActivity(), DataResultAdapter.Callbacks {
                 }
 
             })
-        viewModel.updateRecyclerViewAdapter.observe(this,{
-            mAdapter.notifyDataSetChanged()
+        viewModel.resultDetails().observe(this,{
+            setRecyclerView(it)
         })
+
     }
-    private fun setRecyclerView() {
-        mAdapter = DataResultAdapter(viewModel.dataResultInfo.value!!, this)
+    private fun setRecyclerView(mutableList: List<DataResultResponse>) {
+        mAdapter = DataResultAdapter(mutableList, this)
         data_list.adapter = mAdapter
         data_list.layoutManager = LinearLayoutManager(
             this,
@@ -82,8 +82,10 @@ class DisplayInfoActivity : BaseActivity(), DataResultAdapter.Callbacks {
 
     }
 
-    override fun onItemClick(view: View, item: List<DataResultResponse>) {
-        viewModel.startActivityEvent.value = StartActivityModel(Router.Destination.LOGIN, hashMapOf(Pair(Router.Parameter.USER_ID,viewModel.model)),clearHistory = true)
+    override fun onItemClick(view: View, item: DataResultResponse) {
+        viewModel.startActivityEvent.value = StartActivityModel(Router.Destination.LOGIN, hashMapOf(Pair(Router.Parameter.USER_ID,item)),clearHistory = true)
     }
+
+
 
 }

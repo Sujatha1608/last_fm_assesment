@@ -22,11 +22,11 @@ class DisplayInfoViewModel @Inject constructor( private val dataSettUseCase: Dat
     val errorEvent = MutableLiveData<String>()
     val loadingDialogEvent = SingleLiveEvent<Boolean>()
     val startActivityEvent: StartActivityEvent = StartActivityEvent()
-    val updateRecyclerViewAdapter = MutableLiveData<Boolean>()
+    val updateRecyclerViewAdapter = MutableLiveData<Boolean>(false)
     var isFormValid = ObservableBoolean(false)
     var user_id = ObservableInt(0)
 
-    var dataResultInfo: MutableLiveData<MutableList<DataResultResponse>> = MutableLiveData(mutableListOf())
+    var dataResultInfo = MutableLiveData<List<DataResultResponse>>()
     val list = mutableListOf<DataResultResponse>()
     lateinit var model: DataResultResponse
 
@@ -35,8 +35,10 @@ class DisplayInfoViewModel @Inject constructor( private val dataSettUseCase: Dat
     init {
         userName.observe().map { it?.isNotEmpty() }.subscribe { isFormValid.set(it!!)}
     }
+    fun resultDetails():MutableLiveData<List<DataResultResponse>>{
+         return dataResultInfo
+    }
      fun onSearchClicked() {
-         if (isFormValid.get()) {
              loadingDialogEvent.postValue(true)
              dataSettUseCase.execute(userName.get())
                  .subscribeBy(
@@ -44,15 +46,16 @@ class DisplayInfoViewModel @Inject constructor( private val dataSettUseCase: Dat
                          userName.set("")
                          Timber.d { "api $it" }
                          loadingDialogEvent.postValue(false)
+                         list.clear()
                          for (i in it.items!!) {
                              user_id.set(i.user_id!!)
                              model = DataResultResponse(user_id = i.user_id,display_name = i.display_name,reputation = i.reputation,creation_date = i.creation_date,avatar = i.profile_image)
-                             updateRecyclerViewAdapter.postValue(true)
-                             dataResultInfo.value!!.clear()
                              list.add(model)
-                             dataResultInfo.value!!.addAll(list)
+                             list.sortBy { it.display_name }
+
 
                          }
+                         resultDetails().value=list
                      },
                      onError = { e ->
                          errorEvent.postValue(e.message.toString())
@@ -61,6 +64,6 @@ class DisplayInfoViewModel @Inject constructor( private val dataSettUseCase: Dat
                      }
                  )
          }
-     }
+
 
 }

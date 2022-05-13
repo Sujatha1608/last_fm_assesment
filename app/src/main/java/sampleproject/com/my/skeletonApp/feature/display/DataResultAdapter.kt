@@ -18,7 +18,7 @@ class DataResultAdapter(statusList: List<DataResultResponse>, private val callba
         items = statusList
     }
     interface Callbacks{
-        fun onItemClick(view: View, item: List<DataResultResponse>)
+        fun onItemClick(view: View, item: DataResultResponse)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -37,7 +37,7 @@ class DataResultAdapter(statusList: List<DataResultResponse>, private val callba
         holder.binding.model = items[position]
         holder.mapTestStatus(items[position],holder)
         holder.binding.cvData.setOnClickListener {
-            callbacks?.onItemClick(it,items)
+            callbacks?.onItemClick(it,items[position])
         }
 
     }
@@ -53,7 +53,9 @@ class DataResultAdapter(statusList: List<DataResultResponse>, private val callba
         }
 
     }
-
+    fun updateData(items:MutableList<DataResultResponse>){
+        this.items = items
+    }
 }
 
 
