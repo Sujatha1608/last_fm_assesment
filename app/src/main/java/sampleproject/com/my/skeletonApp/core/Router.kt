@@ -11,8 +11,10 @@ class Router {
     }
 
     enum class Parameter{
-        USERNAME,
-        USER_ID
+        AVATAR,
+        USER_ID,
+        CREATION_DATE
+
     }
 
     companion object {

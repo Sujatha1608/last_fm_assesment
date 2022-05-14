@@ -1,14 +1,13 @@
 package sampleproject.com.my.skeletonApp.feature.login
 
 
-import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import sampleproject.com.my.skeletonApp.core.event.SingleLiveEvent
-import sampleproject.com.my.skeletonApp.feature.display.DataResultResponse
 import sampleproject.com.my.skeletonApp.rest.BadgeDataUseCase
+import sampleproject.com.my.skeletonApp.utilities.ObservableString
 import sampleproject.com.my.skeletonApp.utilities.observe
 import javax.inject.Inject
 
@@ -17,26 +16,33 @@ class GetDataViewModel @Inject constructor(private val dataBadgeDataUseCase: Bad
 
     val errorEvent = MutableLiveData<String>()
     val loadingDialogEvent = SingleLiveEvent<Boolean>()
-    var user_id = ObservableInt(0)
-    var isFormValid = ObservableBoolean(false)
+     var user_id = ObservableInt(0)
+     var account_id = ObservableInt(0)
 
-    lateinit var model: DataResultResponse
+    var avatar = ObservableString("")
+    var display_name = ObservableString("")
+    var reputation = ObservableString("")
+    var badges = ObservableString("")
+    var location = ObservableString("")
+    var creation_date = ObservableString("")
+
 
     init {
-        user_id.observe().map { it!=0 }.subscribe { isFormValid.set(it)}
-        onSampleLoginClicked()
+       user_id.observe().map { it!=0 }.subscribe{if(it) onSampleLoginClicked()}
 
     }
 
     private fun onSampleLoginClicked() {
-        if (isFormValid.get()) {
+
             loadingDialogEvent.postValue(true)
-            dataBadgeDataUseCase.execute(model.user_id.toString())
+            dataBadgeDataUseCase.execute(user_id.get().toString())
                 .subscribeBy(
                     onSuccess = {
                         loadingDialogEvent.postValue(false)
                         for (i in it.items) {
-                            model.location = i.location
+                            display_name.set(i.display_name)
+                            getGata(i.account_id)
+
                         }
                     },
                     onError = { e ->
@@ -46,5 +52,26 @@ class GetDataViewModel @Inject constructor(private val dataBadgeDataUseCase: Bad
                     }
                 )
         }
+
+    private fun getGata(accountId: Int) {
+        loadingDialogEvent.postValue(true)
+        dataBadgeDataUseCase.execute(accountId.toString())
+            .subscribeBy(
+                onSuccess = {
+                    loadingDialogEvent.postValue(false)
+                    for (i in it.items) {
+
+                        reputation.set(i.reputation.toString())
+                        badges.set(i.badge_counts.toString())
+                        location.set(i.location)
+                    }
+                },
+                onError = { e ->
+                    errorEvent.postValue(e.message.toString())
+                    loadingDialogEvent.postValue(false)
+
+                }
+            )
     }
+
 }

@@ -8,7 +8,6 @@ import com.github.ajalt.timberkt.Timber
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import sampleproject.com.my.skeletonApp.core.event.SingleLiveEvent
 import sampleproject.com.my.skeletonApp.core.event.StartActivityEvent
-import sampleproject.com.my.skeletonApp.rest.BadgeDataUseCase
 import sampleproject.com.my.skeletonApp.rest.DatasetUseCase
 import sampleproject.com.my.skeletonApp.utilities.ObservableString
 import sampleproject.com.my.skeletonApp.utilities.observe

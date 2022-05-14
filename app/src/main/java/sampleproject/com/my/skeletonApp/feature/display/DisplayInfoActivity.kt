@@ -83,7 +83,10 @@ class DisplayInfoActivity : BaseActivity(), DataResultAdapter.Callbacks {
     }
 
     override fun onItemClick(view: View, item: DataResultResponse) {
-        viewModel.startActivityEvent.value = StartActivityModel(Router.Destination.LOGIN, hashMapOf(Pair(Router.Parameter.USER_ID,item)),clearHistory = true)
+        viewModel.startActivityEvent.value = StartActivityModel(Router.Destination.LOGIN,
+            hashMapOf(Pair(Router.Parameter.USER_ID,item.user_id),
+            Pair(Router.Parameter.AVATAR,item.avatar),
+            Pair(Router.Parameter.CREATION_DATE,item.creation_date)),clearHistory = true)
     }
 
 
