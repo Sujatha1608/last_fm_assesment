@@ -26,3 +26,5 @@ First Screen contains user names search.
 Enter the user name and click the Search button then call the api and 
 display the list of users in recyclerview.
 When click on list items user data is displayed from the api.
+Listed upto 20 users alphabetically
+
