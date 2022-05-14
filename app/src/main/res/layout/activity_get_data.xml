@@ -99,7 +99,7 @@
                    android:layout_height="wrap_content"
                    android:layout_marginTop="8dp"
                    android:layout_gravity="center"
-                   android:text="@{Integer.toString(viewmodel.model.reputation)}"
+                   android:text="@{viewmodel.model.reputation}"
                    />
                <View
                    android:layout_width="match_parent"
@@ -176,7 +176,7 @@
                    android:layout_height="wrap_content"
                    android:layout_marginTop="8dp"
                    android:layout_gravity="center"
-                   android:text="@{Integer.toString(viewmodel.model.creation_date)}"
+                   android:text="@{viewmodel.model.creation_date}"
                    />
                <View
                    android:layout_width="match_parent"

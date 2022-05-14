@@ -10,11 +10,11 @@ data class DataResultResponse(
 
     var avatar : String?=null,
     var display_name: String? = "",
-    var reputation : Int? = 0,
+    var reputation : String? = "",
     var top_tags: String? = "",
     var badges : String? = "",
     var location : String? = "",
     var user_id : Int? = 0,
-    var creation_date : Int? = 0
+    var creation_date : String? = ""
 
 ): Parcelable

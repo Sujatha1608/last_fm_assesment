@@ -12,6 +12,8 @@ import sampleproject.com.my.skeletonApp.rest.BadgeDataUseCase
 import sampleproject.com.my.skeletonApp.rest.DatasetUseCase
 import sampleproject.com.my.skeletonApp.utilities.ObservableString
 import sampleproject.com.my.skeletonApp.utilities.observe
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 
@@ -52,7 +54,7 @@ class DisplayInfoViewModel @Inject constructor(
                          list.clear()
                          for (i in it.items!!) {
                               user_id.set(i.user_id!!)
-                             model = DataResultResponse(user_id = i.user_id,display_name = i.display_name,reputation = i.reputation,creation_date = i.creation_date,avatar = i.profile_image)
+                             model = DataResultResponse(user_id = i.user_id,display_name = i.display_name,reputation = i.reputation.toString(),creation_date = getDate(i.creation_date.toLong()),avatar = i.profile_image)
                              list.add(model)
                              list.sortBy { it.display_name }
 
@@ -66,5 +68,16 @@ class DisplayInfoViewModel @Inject constructor(
 
                      })
                      }
+
+    private fun getDate(epoc: Long): String? {
+        try {
+            val sdf = SimpleDateFormat("dd MMM yyyy")
+            val netDate = Date(epoc*1000)
+            return sdf.format(netDate)
+        } catch (e: Exception) {
+            return e.toString()
+        }
+    }
+
 
 }
