@@ -5,6 +5,7 @@ import sampleproject.com.my.skeletonApp.R
 import sampleproject.com.my.skeletonApp.core.BaseActivity
 import sampleproject.com.my.skeletonApp.core.Router
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.squareup.picasso.Picasso
 import dagger.android.AndroidInjection
@@ -37,7 +38,22 @@ class GetDataActivity : BaseActivity() {
             viewModel.model = intent.getParcelableExtra(Router.Parameter.USER_ID.name)!!
             Picasso.get().load(viewModel.model.avatar).into(img_avatar)
         }
+        viewModel.errorEvent.observe(this,
+            {
+                if (it.isNotEmpty()){
+                    Toast.makeText(this,it, Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
 
+
+        viewModel.loadingDialogEvent.observe(
+            this, {
+                if(isLoadingDialogShown() || !it){
+                    dismissLoadingDialog()
+                }else showLoadingDialog()
+            }
+        )
 
     }
 
