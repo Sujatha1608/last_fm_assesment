@@ -35,17 +35,6 @@
                    app:layout_constraintStart_toStartOf="parent"
                    app:layout_constraintTop_toTopOf="parent"
                    app:model="@{toolbarModel}" />
-               <TextView
-                   android:layout_width="match_parent"
-                   android:layout_height="@dimen/space_extra_large_30dp"
-                   android:id="@+id/tv_header"
-                   android:fontFamily="@font/open_sans_semibold"
-                   android:gravity="center"
-                   android:layout_marginTop="@dimen/space_medium_16dp"
-                   android:textColor="@color/colorBlue"
-                   android:textSize="@dimen/large_text_24sp"
-                   style="@style/BaseTextView.OpenSansBold"
-                   android:text="@string/user_info"/>
 
                <ImageView
                    android:id="@+id/img_avatar"
@@ -55,6 +44,12 @@
                    android:layout_gravity="center"
                    android:layout_margin="@dimen/large_text_24sp"
                    tools:src="@drawable/confirm_button"/>
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="2dp"
+                   android:layout_marginTop="11dp"
+                   android:background="@color/colorGreyPrimary"
+                   />
                <TextView
                    android:id="@+id/txt_user"
                    android:layout_width="wrap_content"
@@ -70,9 +65,10 @@
                    style="@style/BaseTextView.OpenSansBold"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:layout_marginTop="8dp"
+                   android:layout_margin="8dp"
+                   android:gravity="center"
                    android:layout_gravity="center"
-                   android:text="@{viewmodel.display_name}"
+                   android:text="@{viewmodel.model.name}"
                    tools:text="@string/user_name"
                    />
                <View
@@ -87,7 +83,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginTop="12dp"
-                   android:text="@string/reputation"
+                   android:text="@string/artist"
                    android:gravity="center"
                    android:layout_gravity="center"
                    android:textColor="@color/colorBlue"
@@ -99,84 +95,7 @@
                    android:layout_height="wrap_content"
                    android:layout_marginTop="8dp"
                    android:layout_gravity="center"
-                   android:text="@{viewmodel.reputation}"
-                   />
-               <View
-                   android:layout_width="match_parent"
-                   android:layout_height="2dp"
-                   android:layout_marginTop="11dp"
-                   android:background="@color/colorGreyPrimary"
-                   />
-
-               <TextView
-                   android:id="@+id/txt_badges"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="12dp"
-                   android:text="@string/badges"
-                   android:gravity="center"
-                   android:layout_gravity="center"
-                   android:textColor="@color/colorBlue"
-                   />
-               <TextView
-                   android:id="@+id/txt_badges_value"
-                   style="@style/BaseTextView.OpenSansBold"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="8dp"
-                   android:layout_gravity="center"
-                   android:text="@{viewmodel.badges}"
-                   />
-               <View
-                   android:layout_width="match_parent"
-                   android:layout_height="2dp"
-                   android:layout_marginTop="11dp"
-                   android:background="@color/colorGreyPrimary"
-                   />
-
-               <TextView
-                   android:id="@+id/txt_location"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="12dp"
-                   android:text="@string/location"
-                   android:gravity="center"
-                   android:layout_gravity="center"
-                   android:textColor="@color/colorBlue"
-                   />
-               <TextView
-                   android:id="@+id/txt_location_value"
-                   style="@style/BaseTextView.OpenSansBold"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="8dp"
-                   android:layout_gravity="center"
-                   android:text="@{viewmodel.location}"
-                   />
-               <View
-                   android:layout_width="match_parent"
-                   android:layout_height="2dp"
-                   android:layout_marginTop="11dp"
-                   android:background="@color/colorGreyPrimary"
-                   />
-               <TextView
-                   android:id="@+id/txt_creation_date"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="12dp"
-                   android:text="@string/creation_date"
-                   android:gravity="center"
-                   android:layout_gravity="center"
-                   android:textColor="@color/colorBlue"
-                   />
-               <TextView
-                   android:id="@+id/txt_creation_date_value"
-                   style="@style/BaseTextView.OpenSansBold"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="8dp"
-                   android:layout_gravity="center"
-                   android:text="@{viewmodel.creation_date}"
+                   android:text="@{viewmodel.model.artist}"
                    />
                <View
                    android:layout_width="match_parent"

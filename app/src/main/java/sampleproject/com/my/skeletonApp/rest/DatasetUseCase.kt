@@ -6,9 +6,9 @@ import sampleproject.com.my.skeletonApp.rest.model.SampleDataResponse
 import sampleproject.com.my.skeletonApp.rest.model.UseCase
 
 class DatasetUseCase(schedulerProvider: SchedulerProvider, private val getDataRepository: DataSetRepository)
-    : UseCase<String,SampleDataResponse>(schedulerProvider) {
-    override fun buildUseCaseObservable(params: String?): Single<SampleDataResponse> {
-        return getDataRepository.getData(params!!)
+    : UseCase<String,String,SampleDataResponse>(schedulerProvider) {
+    override fun buildUseCaseObservable(params: String?,param2: String?): Single<SampleDataResponse> {
+        return getDataRepository.getData(params!!,param2!!)
     }
 
 }

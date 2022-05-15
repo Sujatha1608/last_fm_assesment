@@ -2,8 +2,6 @@
     <string name="app_name">skeleton-app</string>
 
 	<string name="get_data">Get Data</string>
-	<string name="title">Title</string>
-	<string name="info">Title and Body</string>
 	<string name="user_Id">User Id</string>
 
     <string name="loading">Loading…</string>
@@ -12,11 +10,7 @@
     <string name="search">Search</string>
     <string name="enter_user_name">Enter name</string>
     <string name="user_name">User Name</string>
-    <string name="reputation">Reputation</string>
-    <string name="top_tags">Top Tags</string>
-    <string name="badges">Badges </string>
-    <string name="location">Location</string>
-    <string name="creation_date">Creation Date</string>
+    <string name="artist">Artist</string>
 
 
 

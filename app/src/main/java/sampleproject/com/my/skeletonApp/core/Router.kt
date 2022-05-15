@@ -11,9 +11,7 @@ class Router {
     }
 
     enum class Parameter{
-        AVATAR,
-        USER_ID,
-        CREATION_DATE
+        AVATAR
 
     }
 

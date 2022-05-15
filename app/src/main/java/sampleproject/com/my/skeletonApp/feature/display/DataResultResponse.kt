@@ -1,20 +1,16 @@
 package sampleproject.com.my.skeletonApp.feature.display
 
 
-import android.graphics.Bitmap
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class DataResultResponse(
 
-    var avatar : String?=null,
-    var display_name: String? = "",
-    var reputation : String? = "",
-    var top_tags: String? = "",
-    var badges : String? = "",
-    var location : String? = "",
-    var user_id : Int? = 0,
-    var creation_date : String? = ""
+    var name : String?=null,
+    var artist: String? = "",
+    var url : String? = "",
+    var mbid: String? = "",
+    var info: String? = ""
 
 ): Parcelable

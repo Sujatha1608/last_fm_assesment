@@ -12,8 +12,6 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -34,7 +32,7 @@ class NetworkModule {
     companion object {
         // API Repository
 //        private const val URL = "https://api.github.com/"
-        private const val URL = "https://api.stackexchange.com/2.3/"
+        private const val URL = "https://ws.audioscrobbler.com/"
 
     }
 

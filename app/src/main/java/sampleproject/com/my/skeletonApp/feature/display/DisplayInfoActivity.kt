@@ -1,6 +1,5 @@
 package sampleproject.com.my.skeletonApp.feature.display
 
-import sampleproject.com.my.skeletonApp.AppPreference
 import sampleproject.com.my.skeletonApp.R
 import sampleproject.com.my.skeletonApp.core.BaseActivity
 import sampleproject.com.my.skeletonApp.databinding.ActivityDisplayBinding
@@ -22,8 +21,6 @@ class DisplayInfoActivity : BaseActivity(), DataResultAdapter.Callbacks {
     @Inject
     lateinit var viewModel: DisplayInfoViewModel
 
-    @Inject
-    lateinit var appPreference: AppPreference
 
     lateinit var mAdapter: DataResultAdapter
 
@@ -84,9 +81,7 @@ class DisplayInfoActivity : BaseActivity(), DataResultAdapter.Callbacks {
 
     override fun onItemClick(view: View, item: DataResultResponse) {
         viewModel.startActivityEvent.value = StartActivityModel(Router.Destination.LOGIN,
-            hashMapOf(Pair(Router.Parameter.USER_ID,item.user_id),
-            Pair(Router.Parameter.AVATAR,item.avatar),
-            Pair(Router.Parameter.CREATION_DATE,item.creation_date)),clearHistory = true)
+            hashMapOf(Pair(Router.Parameter.AVATAR,item)))
     }
 
 

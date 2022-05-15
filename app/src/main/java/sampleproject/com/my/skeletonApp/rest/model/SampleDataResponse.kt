@@ -3,67 +3,81 @@ package sampleproject.com.my.skeletonApp.rest.model
 import com.squareup.moshi.Json
 
 data class SampleDataResponse (
-    @Json( name = "items")
-    val items: List<Items>?=null
+    @Json( name = "results")
+    val results: Results?=null
     )
+data class Results (
 
-data class Badge_Counts(
-    @Json( name = "bronze")
-    val bronze: Int?=null,
+    @Json( name ="opensearch:Query")
+    val opensearch_Query : Opensearch_Query,
 
-    @Json( name = "silver")
-    val silver: Int?=null,
+    @Json( name ="opensearch:totalResults")
+    val opensearch_totalResults : Int,
 
-    @Json( name = "gold")
-    val gold: Int?=null,
+    @Json( name ="opensearch:startIndex")
+    val opensearch_startIndex : Int,
+
+    @Json( name ="opensearch:itemsPerPage")
+    val opensearch_itemsPerPage : Int,
+
+    @Json( name ="albummatches")
+    val albummatches : Albummatches,
+
+    @Json( name ="@attr")
+    val attr : attr
 )
-data class Items(
-    @Json( name = "badge_counts")
-    val badge_counts: Badge_Counts?=null,
 
-    @Json( name = "is_employee")
-    val is_employee: Boolean,
+data class Albummatches (
 
-    @Json( name = "last_modified_date")
-    val last_modified_date: Int,
+    @Json( name ="album")
+    val album : List<Album>
+)
+data class Album (
 
-    @Json( name = "last_access_date")
-    val last_access_date: Int?=null,
+    @Json( name ="name")
+    val name : String,
 
-    @Json( name = "reputation_change_year")
-    val reputation_change_year: Int?=null,
+    @Json( name ="artist")
+    val artist : String,
 
-    @Json( name = "reputation_change_quarter")
-    val reputation_change_quarter: Int,
+    @Json( name ="url")
+    val url : String,
 
-    @Json( name = "reputation_change_month")
-    val reputation_change_month: Int,
+    @Json( name ="image")
+    val image : List<Image>,
 
-    @Json( name = "reputation_change_week")
-    val reputation_change_week: Int?=null,
+    @Json( name ="streamable")
+    val streamable : Int,
 
-    @Json( name = "reputation_change_day")
-    val reputation_change_day: Int,
+    @Json( name ="mbid")
+    val mbid : String
+)
 
-    @Json( name = "reputation")
-    val reputation: Int?=null,
+data class Image (
 
-    @Json( name = "creation_date")
-    val creation_date: Int,
+    @Json( name = "#text")
+    val text : String,
 
-    @Json( name = "user_type")
-    val user_type: String?=null,
+    @Json( name = "size")
+    val size : String
+)
 
-    @Json( name = "user_id")
-    val user_id: Int?=null,
+data class Opensearch_Query (
 
-    @Json( name = "link")
-    val link: String?=null,
+    @Json( name = "#text")
+    val text : String,
 
-    @Json( name = "profile_image")
-    val profile_image: String?=null,
+    @Json( name = "role")
+    val role : String,
 
-    @Json( name = "display_name")
-    val display_name: String?=null
+    @Json( name = "searchTerms")
+    val searchTerms : String,
 
+    @Json( name = "startPage")
+    val startPage : Int
+)
+
+data class attr (
+    @Json( name = "for")
+    val for_reference : String
 )

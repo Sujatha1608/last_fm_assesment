@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/grey_light"
         android:orientation="vertical">
         <include
@@ -48,6 +48,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_bold"
                         android:layout_weight="1"
+                        android:background="@color/colorLightBlue"
                         android:onClick="@{() -> viewModel.onSearchClicked()}"
                         android:textColor="@color/textColorDark"
                         android:textSize="@dimen/medium_text_16sp"

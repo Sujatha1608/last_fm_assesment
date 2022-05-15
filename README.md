@@ -22,9 +22,9 @@ This project follows Clean Architecture with MVVM with Clean Architecture Design
 
 
 This App Contains 2 screens
-First Screen contains user names search. 
-Enter the user name and click the Search button then call the api and 
-display the list of users in recyclerview.
-When click on list items user data is displayed from the api.
+First Screen contains artist names search. 
+Enter the artist name and click the Search button then call the api and 
+display the list of artists in recyclerview.
+When click on list items artists data is displayed from the api.
 Listed upto 20 users alphabetically
 
